@@ -1,0 +1,7 @@
+.terraform/
+.tools/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+.verification/

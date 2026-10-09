@@ -1,0 +1,55 @@
+{
+  "schema": "vpc-source-composition-public-summary/v1",
+  "observed_at_utc": "2026-10-09T14:04:26.711758+00:00",
+  "runtime": {
+    "platform": "Linux amd64, Ubuntu 24.04 under WSL2",
+    "opentofu": "1.13.0",
+    "aws_provider": "6.28.0"
+  },
+  "source": {
+    "repository": "https://github.com/terraform-aws-modules/terraform-aws-vpc",
+    "commit": "b3abd6df2ecf052451a361ed55b8f06f8742a795",
+    "git_tree_sha1": "1da96da50a0dc9ebe529bb3dccd213adc89f7053",
+    "files": 111,
+    "raw_bytes": 934669,
+    "license": "Apache-2.0"
+  },
+  "copied_module_bytes_unchanged": true,
+  "actual_local_module_bindings": [
+    "test.tests.bindings.disabled_bindings",
+    "test.tests.bindings.per_az_bindings",
+    "test.tests.bindings.shared_bindings",
+    "vpc"
+  ],
+  "checks": {
+    "format": "passed",
+    "readonly_lock_initialization": "passed",
+    "validation": "passed",
+    "mocked_plan_tests": {
+      "passed": 7,
+      "failed": 0,
+      "assertions": 33,
+      "invalid_input_expected_failure_run": "reject_unknown_nat_mode"
+    }
+  },
+  "runs": [
+    "disabled_bindings",
+    "shared_bindings",
+    "per_az_bindings",
+    "disabled_by_default",
+    "shared",
+    "per_az",
+    "reject_unknown_nat_mode"
+  ],
+  "provider_cache_reused": true,
+  "fresh_provider_download_verified": false,
+  "historical_negative_association_check": "failed as expected; exact restoration passed three binding runs; not repeated in this local full-suite run",
+  "aws_deployment": false,
+  "remote_ci_executed": false,
+  "limits": [
+    "Only Linux amd64 under Ubuntu-24.04 WSL2 executed.",
+    "Mocked plans check resource relationships; no deployed connectivity, security posture, cost or availability evidence.",
+    "Private/intra public-IP assertions reject true; optional upstream attributes may remain null.",
+    "No fresh provider download or remote CI execution."
+  ]
+}

@@ -1,0 +1,32 @@
+name: Mocked VPC topology contracts
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TF_IN_AUTOMATION: "1"
+      CHECKPOINT_DISABLE: "1"
+      AWS_EC2_METADATA_DISABLED: "true"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Download and verify OpenTofu 1.13.0
+        run: |
+          mkdir .tools
+          curl --fail --location --retry 3 https://github.com/opentofu/opentofu/releases/download/v1.13.0/tofu_1.13.0_linux_amd64.tar.gz --output .tools/tofu.tar.gz
+          echo '1f0cb37fc85dea4e7633a72aca2332b801f72650a32be911b8b9b32907f214fb  .tools/tofu.tar.gz' | sha256sum --check --strict
+          tar --extract --gzip --file .tools/tofu.tar.gz --directory .tools tofu
+          .tools/tofu version
+      - name: Check format and load pinned sources
+        run: |
+          .tools/tofu fmt -check -recursive -no-color
+          .tools/tofu init -backend=false -input=false -lockfile=readonly -no-color
+      - name: Validate and run mocked plan contracts
+        run: |
+          .tools/tofu validate -no-color
+          .tools/tofu test -no-color

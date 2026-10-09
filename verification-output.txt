@@ -1,0 +1,11 @@
+tests/bindings.tftest.hcl... pass
+  run "disabled_bindings"... pass
+  run "shared_bindings"... pass
+  run "per_az_bindings"... pass
+tests/modes.tftest.hcl... pass
+  run "disabled_by_default"... pass
+  run "shared"... pass
+  run "per_az"... pass
+  run "reject_unknown_nat_mode"... pass
+
+Success! 7 passed, 0 failed.
