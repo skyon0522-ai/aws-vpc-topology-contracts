@@ -4,6 +4,8 @@ Check a VPC's planned outbound paths before reviewing an infrastructure change. 
 
 The example has three availability zones, three public subnets, six private subnets and three intra subnets. The default disables NAT. Tests use a mocked AWS provider and plan operations; they require no AWS account or deployment.
 
+Start with the [three-mode comparison](#compare-layouts) or [run commands](#run). The authored [root fixture](main.tf) selects the included [upstream module](upstream/); [mode tests](tests/modes.tftest.hcl) and [route-binding tests](tests/bindings.tftest.hcl) inspect its planned resources. [Source composition](SOURCES.md) and [observed verification](VERIFICATION.md) separate copied source, local additions and test limits.
+
 ## Run
 
 Use Linux amd64 with Git, curl, tar and sha256sum installed. Inside this directory, download the pinned OpenTofu binary and verify its release checksum:
